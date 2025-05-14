@@ -71,8 +71,8 @@ async def register(
     try:
         new_user = UserModel(
             email=user.email,
-            _hashed_password = hashed_psw,
-            group_id = user_group.id,
+            _hashed_password=hashed_psw,
+            group_id=user_group.id,
         )
         db.add(new_user)
         await db.flush()
@@ -261,9 +261,9 @@ async def login(
 
     try:
         new_refresh_token = RefreshTokenModel.create(
-           user_id=exists_user.id,
-           token=refresh_token,
-           days_valid=settings.LOGIN_TIME_DAYS
+            user_id=exists_user.id,
+            token=refresh_token,
+            days_valid=settings.LOGIN_TIME_DAYS
         )
         db.add(new_refresh_token)
         await db.commit()
