@@ -68,6 +68,12 @@ async def register(
     )
     user_group = user_group_query.scalar_one_or_none()
 
+    if user_group is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User group 'USER' does not exist."
+        )
+
     try:
         new_user = UserModel(
             email=user.email,
